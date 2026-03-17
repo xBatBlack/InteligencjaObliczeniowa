@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv(r"x:\programowanie\intob\Projekt03\iris_big.csv")
+df = pd.read_csv(r"x:\programowanie\InteligencjaObliczeniowa\Projekt03\iris_big.csv")
 
 train_set, test_set = train_test_split(df.values, train_size=0.7, random_state=300852)
 

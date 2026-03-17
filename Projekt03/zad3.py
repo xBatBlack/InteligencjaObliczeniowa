@@ -5,7 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-df = pd.read_csv(r"x:\programowanie\intob\Projekt03\iris_big.csv")
+df = pd.read_csv(r"x:\programowanie\InteligencjaObliczeniowa\Projekt03\iris_big.csv")
 
 # Podział na cechy (X) i klasy (y)
 X = df.iloc[:, 0:4].values
