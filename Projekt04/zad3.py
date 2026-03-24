@@ -19,7 +19,6 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_val = scaler.transform(X_val)
 
-# W PyTorch dla klasyfikacji binarnej z użyciem BCELoss pożądany jest tensor wyjściowy [N, 1] w typie Float
 X_train_tensor = torch.FloatTensor(X_train)
 y_train_tensor = torch.FloatTensor(y_train).view(-1, 1)
 X_val_tensor = torch.FloatTensor(X_val)
@@ -27,14 +26,14 @@ y_val_tensor = torch.FloatTensor(y_val).view(-1, 1)
 
 train_loader = DataLoader(TensorDataset(X_train_tensor, y_train_tensor), batch_size=32, shuffle=True)
 
-# Budowa modelu (Binarnego)
+# budowa modelu
 class DiagnosisNet(nn.Module):
     def __init__(self):
         super(DiagnosisNet, self).__init__()
         self.fc1 = nn.Linear(3, 16)   # 3 parametry medyczne
         self.relu = nn.ReLU()
         self.fc2 = nn.Linear(16, 1)   # Jedno wyjście podsumowujące (Chory/Zdrowy)
-        self.sigmoid = nn.Sigmoid()   # Sigmoid spłaszcza odpowiedź do skali od 0 do 1
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.fc1(x)
@@ -66,7 +65,6 @@ for epoch in range(epochs):
         
         running_loss += loss.item()
         
-        # Jeśli na wyjściu sieci jest >= 0.5 uznajemy to za klasę 1 (Chory), jeśli nie - za 0 (Zdrowy)
         predicted = (outputs >= 0.5).float()
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
@@ -83,7 +81,6 @@ for epoch in range(epochs):
         val_predicted = (val_outputs >= 0.5).float()
         val_accs.append(accuracy_score(y_val, val_predicted.numpy()))
 
-# Wizualizacja Krzywych
 plt.figure(figsize=(12, 5))
 plt.subplot(1, 2, 1)
 plt.plot(train_losses, label='Trening')
@@ -98,7 +95,6 @@ plt.title('Krzywa dokładności (Diagnoza)')
 plt.legend()
 plt.show()
 
-# Ewaluacja końcowa z Precision i Recall
 y_val_numpy = y_val_tensor.numpy()
 val_pred_numpy = val_predicted.numpy()
 

@@ -11,14 +11,14 @@ def sigmoid_derivative(x):
 # Dane wejściowe zgodne ze skryptem:
 x1, x2 = 0.6, 0.1
 y_true = 0.8
-eta = 0.1 # współczynnik uczenia
+eta = 0.1
 
 # Początkowe wagi i biasy wyciągnięte ze skryptu z PDF-a
 w1, w2, b1 = 0.2, -0.3, 0.4
 w3, w4, b2 = -0.5, 0.1, -0.2
 w5, w6, b3 = 0.3, -0.4, 0.2
 
-# a & b) Propagacja w przód (Forward Propagation)
+# a,b
 def forward_propagation(x1, x2):
     # neuron ukryty nr 1
     z1 = w1*x1 + w2*x2 + b1
@@ -37,13 +37,12 @@ def forward_propagation(x1, x2):
 z1, h1, z2, h2, z3, y_pred = forward_propagation(x1, x2)
 print(f"Predykcja (y_pred): {y_pred:.4f} (Spodziewane: ~0.2341)")
 
-# c) Propagacja wstecz i spadek gradientu (Backpropagation)
+# Backpropagation
 # Błąd średniokwadratowy (MSE)
 loss = 0.5 * (y_pred - y_true)**2
 print(f"Strata (Loss): {loss:.4f} (Spodziewane: ~0.1601)")
 
-# Krok 1: sygnał błędu na wyjściu 
-# Ponieważ wyjście jest liniowe, pochodna po nim to po prostu y_pred - y_true
+# Krok 1: sygnał błędu na wyjściu
 delta3 = y_pred - y_true
 
 # Krok 2: Gradienty wag warstwy wyjściowej
@@ -64,7 +63,7 @@ dL_dw3 = delta2 * x1
 dL_dw4 = delta2 * x2
 dL_db2 = delta2
 
-# --- d) Aktualizacja wag ---
+# aktualizacja wag
 w5_new = w5 - eta * dL_dw5
 w6_new = w6 - eta * dL_dw6
 

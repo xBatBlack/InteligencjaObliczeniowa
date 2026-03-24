@@ -5,7 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-df = pd.read_csv(r"x:\programowanie\InteligencjaObliczeniowa\Projekt03\iris_big.csv")
+df = pd.read_csv(r"c:\Programowanie\InteligencjaObliczeniowa\Projekt03\iris_big.csv")
 
 # Podział na cechy (X) i klasy (y)
 X = df.iloc[:, 0:4].values
@@ -16,14 +16,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, random
 
 # Słownik z klasyfikatorami do przetestowania
 classifiers = {
-    "k-NN (k=1)": KNeighborsClassifier(n_neighbors=1),
     "k-NN (k=3)": KNeighborsClassifier(n_neighbors=3),
     "k-NN (k=5)": KNeighborsClassifier(n_neighbors=5),
+    "k-NN (k=11)": KNeighborsClassifier(n_neighbors=11),
     "Naive Bayes": GaussianNB(),
     "MLP (Sieć Neuronowa)": MLPClassifier(max_iter=1500, random_state=300852)
 }
 
-print("--- ZADANIE 3: PORÓWNANIE KLASYFIKATORÓW ---")
+print("ZADANIE 3: PORÓWNANIE KLASYFIKATORÓW")
 for name, clf in classifiers.items():
     clf.fit(X_train, y_train)
     

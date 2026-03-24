@@ -4,7 +4,7 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 
-df = pd.read_csv(r"x:\programowanie\InteligencjaObliczeniowa\Projekt03\iris_big.csv") 
+df = pd.read_csv(r"c:\Programowanie\InteligencjaObliczeniowa\Projekt03\iris_big.csv") 
 
 # a) Podział na inputy i klasy
 X = df.iloc[:, 0:4].values

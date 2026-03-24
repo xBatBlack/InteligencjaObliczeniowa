@@ -8,7 +8,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
 
-df_diag = pd.read_csv(r"x:\programowanie\InteligencjaObliczeniowa\Projekt03\diagnosis.csv")
+df_diag = pd.read_csv(r"c:\Programowanie\InteligencjaObliczeniowa\Projekt03\diagnosis.csv")
 
 X = df_diag.iloc[:, :-1].values
 y = df_diag.iloc[:, -1].values
@@ -39,7 +39,7 @@ classifiers = {
     "MLP (Sieć Neuronowa)": MLPClassifier(max_iter=1500, random_state=300852)
 }
 
-print("\n--- ZADANIE 4: WYNIKI DIAGNOZY ---")
+print("\nZADANIE 4: WYNIKI DIAGNOZY")
 
 for name, clf in classifiers.items():
     clf.fit(X_train, y_train)
